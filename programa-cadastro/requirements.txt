@@ -1,0 +1,26 @@
+1- Wampserver: https://www.wampserver.com/en/
+
+Será necessário ter um servidor MySql para recebermos os dados dos produtos.
+
+2- Após a instalação do Wamp e inicialização do servidor SQL é necessário abrir o console MySQL
+ou programas como Dbeaver e seguir com a criação do banco de dados e da tabela como mostrado necessário
+arquivo 'script_mysql.sql'
+
+3- QTDesigner: https://www.qt.io/download
+
+4- É necessário a criação de um template para o programa.
+Utilizado:
+Main Window -- tela do programa
+labels -- para a descrições
+radiobutton -- para as opções da Categoria
+pushbutton -- parao botão enviar
+
+5- criar o programa em Python integrando com o MySql e QTDesigner
+para isso é necessário as lib:
+
+pip install mysql-connector-python -- conector MySQL para conectar com o bd.
+pip install PyQt5 -- integrar com o arquivo criado do QTDesigner.
+
+6- Realizar a criação do programa do arquivo 'cadastro_produto.py'
+
+7- Alterar 
