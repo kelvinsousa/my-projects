@@ -1,2 +1,2 @@
 # My Projects
- Repo for my personal projects
+ Repository for my personal projects!
