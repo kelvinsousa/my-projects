@@ -1,4 +1,4 @@
 # My Projects
- Repository for my personal projects!
+ Repository for **my personal** projects!
  
 Enjoy!
