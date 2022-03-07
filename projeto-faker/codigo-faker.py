@@ -4,6 +4,11 @@ from openpyxl import Workbook
 from faker import Faker
 from faker.providers.phone_number import Provider as PhoneNumberProvider
 
+import pandas as pd
+
+df = pd.read_csv('grupos.csv')
+
+
 book = Workbook()
 ws = book.active
 
@@ -256,7 +261,9 @@ persons = []
 
 while count <= 800:
     person = []
-    nome = fake.first_name()
+    nome = ''
+    for i in df.sample(n=count)['name'].str.capitalize():
+        nome = i
     sobrenome = fake.last_name()
     person.append(nome)
     person.append(sobrenome)
