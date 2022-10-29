@@ -3,7 +3,12 @@ import random
 list_vogals = ['a', 'e', 'i', 'o', 'u']
 vogals = list()
 
+
 name = input('Qual é o seu nome? ').strip().lower()
+
+while name.isdigit() or len(name) < 3:
+    name = input('Seu nome foi digitado incorretamente, favor inserir novamente: ')
+    
 
 def Newname(arg):
     for letter in arg:
