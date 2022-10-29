@@ -4,10 +4,13 @@ list_vogals = ['a', 'e', 'i', 'o', 'u']
 vogals = list()
 
 
-name = input('Qual é o seu nome? ').strip().lower()
 
-while name.isdigit() or len(name) < 3:
-    name = input('Seu nome foi digitado incorretamente, favor inserir novamente: ')
+while True:
+    name = input('Qual é o seu nome? ').strip().lower()
+    if name.isdigit() or len(name) > 3:
+        break
+    else: 
+        print('Seu nome foi digitado incorretamente..', end=' ')
     
 
 def Newname(arg):
@@ -32,6 +35,6 @@ else:
         print(f'{new_name}..', end = ' ')
         new_name = Newname(name)
     
-    print(f'Ah agora já sei pronunciar seu nome. Mil desculpas {new_name.capitalize()}')
+    print(f'Ah agora já sei pronunciar seu nome. Mil desculpas {new_name.capitalize()}.')
     
 
