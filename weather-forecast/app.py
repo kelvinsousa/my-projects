@@ -19,7 +19,6 @@ complete_url = base_url + "appid=" + api_key + "&q=" + city
 # get method of requests module
 # return response object
 response = requests.get(complete_url)
-print(response)
 
 # json method of response object
 # convert json format data into
