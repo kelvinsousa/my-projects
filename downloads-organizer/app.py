@@ -4,6 +4,7 @@ import os
 path = 'C:\\Users\\kelvin.sousa\\downloads'
 path_join = 'C:\\Users\\kelvin.sousa\\downloads\\'
 
+# Dict with folders names destinations.
 folder_names = {
     
     'Excel':{'xlsx','csv'},
