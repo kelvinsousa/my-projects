@@ -1,4 +1,5 @@
 import random
+from time import sleep
 
 list_vogals = ['a', 'e', 'i', 'o', 'u']
 vogals = list()
@@ -23,16 +24,20 @@ def Newname(arg):
 
 new_name = Newname(name)
 
-print(f'Olá senhor {new_name}! Tenha paciência comigo estou aprendendo os nomes.', end=' ')
+print(f'Olá Sr(a). {new_name}! Tenha paciência comigo estou aprendendo os nomes.', end=' ')
+sleep(1)
+print()
 
 if new_name == name:
     print(f'Olha, sei falar seu nome de primeira {new_name}')
 
 else:
-    print(f'Desculpe {new_name}. Vou tentar novamente..', end =' ')
+    print(f'Desculpe {new_name}. Vou tentar novamente..')
+    sleep(0.5)
     new_name = Newname(name)
     while new_name != name:
-        print(f'{new_name}..', end = ' ')
+        print(f'{new_name}..')
+        sleep(0.5)
         new_name = Newname(name)
     
     print(f'Ah agora já sei pronunciar seu nome. Mil desculpas {new_name.capitalize()}.')
