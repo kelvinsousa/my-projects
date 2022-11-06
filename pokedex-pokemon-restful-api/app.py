@@ -24,13 +24,10 @@ def main():
 
 #Funcao para pegar as opções do json, é realizado uma iteração e adicionado as opções em uma lista chamada options.
 def GetOptions(poke):
-    poke_choiced = GetName(poke)
-    print(emoji.emojize(f' Pokémon: {poke_choiced} :star:'))
-    sleep(1)
     print('-'*40)
     print(f"- -> Lista de opções: {' ':17}-")
+    print('-'*40)
     sleep(0.5)
-    print(f"-{' ':38}-")
     options = []
     for name in poke:
         if name in (options_off): #elimina opções que não queremos.
@@ -244,6 +241,9 @@ print(f"-{' ':38}-")
 print(emoji.emojize(f'-{"~~ Bem-vindo a Pokédex:mobile_phone:~~":^50}-'))
 print(f"-{' ':38}-")
 print('-'*40)
+sleep(1)
+poke_choiced = GetName(poke)
+print(emoji.emojize(f' Pokémon: {poke_choiced} :star:'))
 sleep(1)
 GetOptions(poke)
 print()
