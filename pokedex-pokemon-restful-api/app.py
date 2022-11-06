@@ -5,25 +5,29 @@ from PIL import Image
 import emoji
 import os
 
-pokemon = str(input('Insira o nome ou o número do pokemón: ')).strip().lower()
 options_off = ['is_default','order','location_area_encounters', 'held_items','game_indices','past_types', 'name', 'species'] # lista das categorias que iremos decartar.
 
 tab = '    ' # para facilitar o uso nos prints.
 
-# funcao principal que faz um request na API do pokeapi.co, recebe o input do Pokémon e retorna um json com os dados do Pokémon.
+# funcao principal que recebe o input do Pokémon, faz o request e retorna um json com os dados do Pokémon.
+    
 def main():
     while True:
         try:
+            pokemon = str(input('Insira o nome ou o número do pokemón: ')).strip().lower()
             api = f'https://pokeapi.co/api/v2/pokemon/{pokemon}'
             rest = requests.get(api)
             poke = rest.json()
-            break
+            return poke
         except requests.exceptions.JSONDecodeError:
             print('Pokémon inválido')
-    return poke
 
 #Funcao para pegar as opções do json, é realizado uma iteração e adicionado as opções em uma lista chamada options.
 def GetOptions(poke):
+    poke_choiced = GetName(poke)
+    print(emoji.emojize(f' Pokémon: {poke_choiced} :star:'))
+    sleep(1)
+    print('-'*40)
     print(f"- -> Lista de opções: {' ':17}-")
     sleep(0.5)
     print(f"-{' ':38}-")
@@ -73,7 +77,10 @@ def Options(op):
     else:
         print('Ok. Fechando Pokédex. Até mais!')
         sleep(2)
-        exit
+        exit()
+        
+def GetName(poke):
+    return poke['name']
 
 # Funcao para pegar a habilidade.
 def GetAbility(poke):
@@ -178,7 +185,7 @@ def GetImage(poke):
     default_image = sprites['front_default']
     urllib.request.urlretrieve(f'{default_image}', 'default_poke.png')
     image = Image.open('default_poke.png').convert('L')
-    size =(200,200)
+    size =(300,300)
     new_image = image.resize(size)
     new_image.show()
     os.remove('default_poke.png')
@@ -186,27 +193,28 @@ def GetImage(poke):
 
 # Funcão que traz todas as opções de uma vez caso o usuário escolha.
 def GetAllOptions(poke):
-    GetAbility(main())
+    GetAbility(poke)
     print()
-    GetBaseExp(main())
+    GetBaseExp(poke)
     print()
-    GetForms(main())
+    GetForms(poke)
     print()
-    GetHeight(main())
+    GetHeight(poke)
     print()
-    GetNumber(main())
+    GetNumber(poke)
     print()
-    GetMoves(main())
+    GetMoves(poke)
     print()
-    GetStats(main())
+    GetStats(poke)
     print()
-    GetTypes(main())
+    GetTypes(poke)
     print()
-    GetWeight(main())
+    GetWeight(poke)
     print(f'\n-> Sprites:\n{tab}- Gerando default sprite...')
-    sleep(1)
-    GetImage(main())
+    sleep(2)
+    GetImage(poke)
     print('Obrigado por utilizar a Pokédex. Até mais!')
+    exit()
 
 
 # Funcao de retorno ao menu para ser aplicado nas funções, desconsiderando se o usuário escolheu para ver todas de uma vez.
@@ -224,8 +232,7 @@ def ReturnMenu():
         else:
             print('Fechando Pokédex. Até mais!')
             sleep(1)
-            exit
-            break
+            exit()
     pass
 
 poke = main()
