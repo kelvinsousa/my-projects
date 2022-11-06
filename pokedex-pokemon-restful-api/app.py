@@ -6,9 +6,11 @@ import emoji
 import os
 
 pokemon = str(input('Insira o nome ou o número do pokemón: ')).strip().lower()
-options_off = ['is_default','order','location_area_encounters', 'held_items','game_indices','past_types', 'name', 'species']
-tab = '    '
+options_off = ['is_default','order','location_area_encounters', 'held_items','game_indices','past_types', 'name', 'species'] # lista das categorias que iremos decartar.
 
+tab = '    ' # para facilitar o uso nos prints.
+
+# funcao principal que faz um request na API do pokeapi.co, recebe o input do Pokémon e retorna um json com os dados do Pokémon.
 def main():
     while True:
         try:
@@ -20,13 +22,14 @@ def main():
             print('Pokémon inválido')
     return poke
 
+#Funcao para pegar as opções do json, é realizado uma iteração e adicionado as opções em uma lista chamada options.
 def GetOptions(poke):
     print(f"- -> Lista de opções: {' ':17}-")
     sleep(0.5)
     print(f"-{' ':38}-")
     options = []
     for name in poke:
-        if name in (options_off):
+        if name in (options_off): #elimina opções que não queremos.
             continue
         options.append(name)
     for p, i in enumerate(options):
@@ -43,34 +46,36 @@ def GetOptions(poke):
     print(f'-{tab}99- Fechar Pokédex{" "*(22-len(i))}-')
     print('-'*40)
 
+# Funcao(hub) que de acordo com a opção digitada chama outra função. 
 def Options(op):
     if op == 1:
-        GetAbility(main())
+        GetAbility(poke)
     elif op == 2:
-        GetBaseExp(main())
+        GetBaseExp(poke)
     elif op == 3:
-        GetForms(main())
+        GetForms(poke)
     elif op == 4:
-        GetHeight(main())
+        GetHeight(poke)
     elif op == 5:
-        GetNumber(main())
+        GetNumber(poke)
     elif op == 6:
-        GetMoves(main())
+        GetMoves(poke)
     elif op == 7:
-        GetImage(main())
+        GetImage(poke)
     elif op == 8:
-        GetStats(main())
+        GetStats(poke)
     elif op == 9:
-        GetTypes(main())
+        GetTypes(poke)
     elif op == 10:
-        GetWeight(main())
+        GetWeight(poke)
     elif op == 11:
-        GetAllOptions(main())
+        GetAllOptions(poke)
     else:
         print('Ok. Fechando Pokédex. Até mais!')
         sleep(2)
         exit
 
+# Funcao para pegar a habilidade.
 def GetAbility(poke):
     print('-> Abilities: ')
     sleep(0.3)
@@ -78,7 +83,8 @@ def GetAbility(poke):
         print(f"{tab}- {i['ability']['name']}")
         sleep(0.1)
     ReturnMenu()
-    
+
+# Funcao para pegar a Exp Base   
 def GetBaseExp(poke):
     print('-> Base Experience: ', end='')
     sleep(0.3)
@@ -86,6 +92,7 @@ def GetBaseExp(poke):
     print(base_exp)
     ReturnMenu()
 
+# Funcao para pegar a quantidade de formas.
 def GetForms(poke):
     print('-> Qty_forms: ', end='')
     sleep(0.3)
@@ -95,6 +102,7 @@ def GetForms(poke):
     print(qty_forms + 1)
     ReturnMenu()
 
+# Funcao para pegar a altura e converter em cm.
 def GetHeight(poke):
     print('-> Height: ', end='')
     sleep(0.3)
@@ -102,6 +110,7 @@ def GetHeight(poke):
     print(f'{height} cm')
     ReturnMenu()
 
+# Funcao para pegar os movimentos com index.
 def GetMoves(poke):
     print('-> Moves: ')
     sleep(0.3)
@@ -110,6 +119,7 @@ def GetMoves(poke):
         sleep(0.1)
     ReturnMenu()
         
+# Funcao para pegar o número do Pokémon.
 def GetNumber(poke):
     print('-> Number: ', end='')
     sleep(0.3)
@@ -117,6 +127,7 @@ def GetNumber(poke):
     print(number)
     ReturnMenu()
 
+# Funcao para pegar os Stats. É inserido Emojis de acordo com os stats.
 def GetStats(poke):
     print('-> Stats:\n')
     sleep(0.3)
@@ -139,7 +150,8 @@ def GetStats(poke):
 
         print(i['base_stat'])
         ReturnMenu()
-        
+ 
+# Funcao para pegar os tipos.       
 def GetTypes(poke):
     print('-> Types: ', end='')
     sleep(0.3)
@@ -148,13 +160,15 @@ def GetTypes(poke):
         print(i['type']['name'])
     ReturnMenu()
 
+# Funcao para pegar o peso e converter em kg.
 def GetWeight(poke):
     print('-> Weight: ', end='')
     sleep(0.3)
     weight = poke['weight'] / 10
     print(f'{weight} kg')
     ReturnMenu()
-     
+    
+# Funcao para pegar o default sprite.
 def GetImage(poke):
     sprites = {
         key:value
@@ -170,6 +184,7 @@ def GetImage(poke):
     os.remove('default_poke.png')
     ReturnMenu()
 
+# Funcão que traz todas as opções de uma vez caso o usuário escolha.
 def GetAllOptions(poke):
     GetAbility(main())
     print()
@@ -194,6 +209,7 @@ def GetAllOptions(poke):
     print('Obrigado por utilizar a Pokédex. Até mais!')
 
 
+# Funcao de retorno ao menu para ser aplicado nas funções, desconsiderando se o usuário escolheu para ver todas de uma vez.
 def ReturnMenu():
     while op_choiced != 11:
         print()
@@ -211,6 +227,7 @@ def ReturnMenu():
             exit
             break
     pass
+
 poke = main()
 sleep(1)
 print('Inicializando Pokédex..')
