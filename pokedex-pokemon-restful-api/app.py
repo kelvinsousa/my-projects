@@ -1,11 +1,8 @@
 import requests
-import matplotlib.pyplot as plt
-import matplotlib.image as mpimg
 from time import sleep
 import urllib.request
 from PIL import Image
 import emoji
-import cv2
 import os
 
 pokemon = str(input('Insira o nome ou o número do pokemón: ')).strip().lower()
