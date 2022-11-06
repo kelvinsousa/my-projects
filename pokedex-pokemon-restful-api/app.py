@@ -22,7 +22,6 @@ def main():
         except requests.exceptions.JSONDecodeError:
             print('Pokémon inválido')
 
-
 #Funcao para pegar as opções do json, é realizado uma iteração e adicionado as opções em uma lista chamada options.
 def GetOptions(poke):
     poke_choiced = GetName(poke)
