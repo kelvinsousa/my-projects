@@ -153,7 +153,7 @@ def GetStats(poke):
             print(emoji.emojize(f"{tab}:check_mark: {i['stat']['name']}"), end=': ')
 
         print(i['base_stat'])
-        ReturnMenu()
+    ReturnMenu()
  
 # Funcao para pegar os tipos.       
 def GetTypes(poke):
